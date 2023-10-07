@@ -14,7 +14,8 @@ import { HttpClientModule } from './http-client/http-client.module';
     FibonacciModule,
     HttpClientModule.register({ baseUrl: 'http://nestjs.com' }), // 👈
     HttpClientModule.register({ baseUrl: 'http://nestjs.com' }), // 👈
-    HttpClientModule.register({ baseUrl: 'http://nestjs.com' }), // 👈
+    HttpClientModule.register({ baseUrl: 'http://nestjs.com' }),
+
     // ⚠️  Alternatively:
     // HttpClientModule.registerAsync({
     //   useFactory: () => ({ baseUrl: 'http://nestjs.com' }),

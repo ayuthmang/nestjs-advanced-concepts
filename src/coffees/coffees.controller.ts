@@ -7,12 +7,16 @@ import {
   Param,
   Delete,
   Inject,
+  UseInterceptors,
+  RequestTimeoutException,
 } from '@nestjs/common';
 import { CoffeesDataSource, CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { COFFEES_DATA_SOURCE } from './coffees.constants';
+import { CircuitBreakerInterceptor } from 'src/common/interceptors/circuit-breaker/circuit-breaker.interceptor';
 
+@UseInterceptors(CircuitBreakerInterceptor) // 👈 use new interceptor
 @Controller('coffees')
 export class CoffeesController {
   constructor(
@@ -29,6 +33,8 @@ export class CoffeesController {
 
   @Get()
   findAll() {
+    console.log('🦊 "findAll" executed');
+    throw new RequestTimeoutException('💥 Error!'); // 👈
     return this.coffeesService.findAll();
   }
 

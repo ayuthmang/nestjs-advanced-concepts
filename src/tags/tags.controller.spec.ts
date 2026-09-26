@@ -11,7 +11,7 @@ describe('TagsController', () => {
       providers: [TagsService],
     }).compile();
 
-    controller = module.get<TagsController>(TagsController);
+    controller = await module.resolve<TagsController>(TagsController);
   });
 
   it('should be defined', () => {
